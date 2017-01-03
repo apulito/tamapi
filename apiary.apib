@@ -1,0 +1,68 @@
+FORMAT: 1A
+# Vitasnella - Tu al meglio
+Documentazione API Tu al meglio 2017
+
+#Group Codici fardello
+## GET /loyalty/codes
+Elenco dei codici fardello caricati dall'utente
++ Request (application/json)
+    + Headers
+        Authorization: Bearer <token>
++ Response 200 (application/json)
+    + Attributes
+        - data (Codes)
+        
+## POST /loyalty/codes
+Caricamento di un codice fardello
++ Request (application/json)
+    + Headers
+        Authorization: Bearer <token>
+    + Attributes
+        - code: `MGHIG56` (string, required)
++ Response 200 (application/json)
+    + Attributes
+        - data (Codes)
+
+
+#Group Premi
+## GET /loyalty/awards
+Elenco dei premi disponibili
++ Request (application/json)
+    + Headers
+        Authorization: Bearer <token>
+    + Attributes
+        - threshold: `6` (string)
+        - score: `6` (number)
++ Response 200 (application/json)
+    + Attributes
+        - data (array[Awards, Awards])
+        
+
+## GET /loyalty/awards/{id}
+Dettaglio di un singolo premio
++ Request (application/json)
+    + Headers
+        Authorization: Bearer <token>
++ Parameters
+    + id: `2` - Id del premio.
++ Response 200 (application/json)
+    + Attributes
+        - data (Awards)
+
+# Data Structures
+## Codes (object)
+- count: `20` (number, required) - Totale dei codici fardello caricati.
+
+## Awards (object)
+- id: `1` (number)
+- title: `nome premio` (string)
+- image: `http://placehold.it/600x600` (string)
+- content: `lorem ipsum dolor sit amet` (string)
+- excerpt: `lorem ipsum dolor` (string)
+- threshold: `6` (string)
+- score: `3` (number)
+- partner: `nome partner` (string)
+- additional_money: `20.00` (number)
+
+## Awards full (object)
+- Include Awards
