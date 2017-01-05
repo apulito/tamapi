@@ -11,6 +11,9 @@ Elenco dei codici fardello caricati dall'utente
 + Response 200 (application/json)
     + Attributes
         - data (Codes)
++ Response 422 (application/json)
+  + Attributes
+    - data (Validation Error)
 
 ## POST /loyalty/codes
 Caricamento di un codice fardello
@@ -49,6 +52,18 @@ Dettaglio di un singolo premio
     + Attributes
         - data (Awards)
 
+## GET /loyalty/awards/request/{id}
+Richiesta premio
++ Request (application/json)
+    + Headers
+        Authorization: Bearer <token>
++ Parameters
+    + id: `2` - Id premio
++ Response 200 (application/json)
+    + Attributes
+        - data (Awards Request)
+
+#Group Soglie
 ## GET /loyalty/thresholds
 Elenco delle soglie premio programma loyalty
 + Request (application/json)
@@ -75,6 +90,15 @@ Elenco delle soglie premio programma loyalty
 
 ## Awards full (object)
 - Include Awards
+
+## Awards Request (object)
+- status: `success` (string)
+- guid: `mhgd67` (string)
+
+## Validation Error (object)
+- status: `error` (string)
+- error_code: `ERR_CODE` (string)
+- message: `error message string` (string)
 
 ## Threshold
 - id: `1` (number)
