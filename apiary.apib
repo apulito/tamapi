@@ -12,8 +12,8 @@ Elenco dei codici fardello caricati dall'utente
     + Attributes
         - data (Codes)
 + Response 422 (application/json)
-  + Attributes
-    - data (Validation Error)
+    + Attributes
+        - data (ValidationError)
 
 ## POST /loyalty/codes
 Caricamento di un codice fardello
@@ -95,9 +95,9 @@ Elenco delle soglie premio programma loyalty
 - status: `success` (string)
 - guid: `mhgd67` (string)
 
-## Validation Error (object)
+## ValidationError (object)
 - status: `error` (string)
-- error_code: `ERR_CODE` (string)
+- error_code: `ERRCODE` (string)
 - message: `error message string` (string)
 
 ## Threshold
