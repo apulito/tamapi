@@ -11,7 +11,7 @@ Elenco dei codici fardello caricati dall'utente
 + Response 200 (application/json)
     + Attributes
         - data (Codes)
-        
+
 ## POST /loyalty/codes
 Caricamento di un codice fardello
 + Request (application/json)
@@ -36,7 +36,7 @@ Elenco dei premi disponibili
 + Response 200 (application/json)
     + Attributes
         - data (array[Awards, Awards])
-        
+
 
 ## GET /loyalty/awards/{id}
 Dettaglio di un singolo premio
@@ -48,6 +48,15 @@ Dettaglio di un singolo premio
 + Response 200 (application/json)
     + Attributes
         - data (Awards)
+
+## GET /loyalty/thresholds
+Elenco delle soglie premio programma loyalty
++ Request (application/json)
+    + Headers
+        Authorization: Bearer <token>
++ Response 200 (application/json)
+  + Attributes
+    - data (array[Threshold, Threshold])
 
 # Data Structures
 ## Codes (object)
@@ -66,3 +75,8 @@ Dettaglio di un singolo premio
 
 ## Awards full (object)
 - Include Awards
+
+## Threshold
+- id: `1` (number)
+- title: `nome soglia` (string)
+- content: `lorem ipsum dolor sit amet lorem ipsum dolor sit amet` (string)
