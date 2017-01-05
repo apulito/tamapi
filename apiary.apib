@@ -165,6 +165,20 @@ Questionario settimanale per l'utente
     + Attributes
         - data (ValidationError)
 
+#Group Wellness
+
+## GET /wellness/survey-profile
+Elenco domande e risposte del questionario di profilazione utente
++ Request (application/json)
+    + Headers
+        Authorization: Bearer <token>
++ Response 200 (application/json)
+    + Attributes
+        - data (Profile Survey)
++ Response 422 (application/json)
+    + Attributes
+        - data (ValidationError)
+
 # Data Structures
 ## Base Item Id
 - id: `1` (number)
@@ -295,3 +309,6 @@ Questionario settimanale per l'utente
 # User Week Survey
 - week_number: `1` (number)
 - Include Survey Item
+
+# Profile Survey
+- (array[Survey Item, Survey Item, Survey Item, Survey Item, Survey Item, Survey Item])
