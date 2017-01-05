@@ -88,18 +88,6 @@ Registrazione nuovo utente
     + Attributes
         - data (ValidationError)
 
-## GET /users/me
-Dettaglio utente loggato
-+ Request (application/json)
-    + Headers
-        Authorization: Bearer <token>
-+ Response 200 (application/json)
-    + Attributes
-        - data (User)
-+ Response 422 (application/json)
-    + Attributes
-        - data (ValidationError)
-
 ## GET /users/{id}
 Dettaglio utente
 + Request (application/json)
@@ -114,7 +102,82 @@ Dettaglio utente
     + Attributes
         - data (ValidationError)
 
+## GET /users/login
+Login utente
++ Request (application/json)
+    + Attributes (User Login)
++ Response 200 (application/json)
+    + Attributes
+        - data (User Token)
++ Response 422 (application/json)
+    + Attributes
+        - data (ValidationError)
+
+## PUT /users/{id}
+Modifica i dati dell'utente
++ Request (application/json)
+    + Headers
+        Authorization: Bearer <token>
+    + Attributes (User)
++ Parameters
+    + id: `2` - ID
++ Response 200 (application/json)
+    + Attributes
+        - data (User)
++ Response 422 (application/json)
+    + Attributes
+        - data (ValidationError)
+
+#Group Contenuti utente
+## GET /users/me
+Dettaglio utente loggato
++ Request (application/json)
+    + Headers
+        Authorization: Bearer <token>
++ Response 200 (application/json)
+    + Attributes
+        - data (User)
++ Response 422 (application/json)
+    + Attributes
+        - data (ValidationError)
+
+## GET /users/me/week
+Contenuti della settimana per l'utente
++ Request (application/json)
+    + Headers
+        Authorization: Bearer <token>
++ Response 200 (application/json)
+    + Attributes
+        - data (User Week)
++ Response 422 (application/json)
+    + Attributes
+        - data (ValidationError)
+
+## GET /users/me/week-survey
+Questionario settimanale per l'utente
++ Request (application/json)
+    + Headers
+        Authorization: Bearer <token>
++ Response 200 (application/json)
+    + Attributes
+        - data (User Week Survey)
++ Response 422 (application/json)
+    + Attributes
+        - data (ValidationError)
+
 # Data Structures
+## Base Item Id
+- id: `1` (number)
+
+## Base Item Title
+- title: `sample title` (string, required)
+
+## Base Item Content
+- title: `sample content lorem ipsum dolor sit amet` (string, required)
+
+## Base Item Image
+- image: `http://placehold.it/400x400` (string)
+
 ## Codes (object)
 - count: `20` (number, required) - Totale dei codici fardello caricati.
 
@@ -181,3 +244,54 @@ Dettaglio utente
 - 2: `1` (number)
 - 3: `1` (number)
 - 4: `0` (number)
+
+## User Login
+- email: `maria.rossi@test.com` (string, required)
+- password: `password` (string, required)
+
+## User Token
+- token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzY290Y2guaW8iLCJleHAiOjEzMDA4MTkzODAsIm5hbWUiOiJDaHJpcyBTZXZpbGxlamEiLCJhZG1pbiI6dHJ1ZX0.03f329983b86f7d9a9f5fef85305880101d5e302afafa20154d094b229f75773` (string)
+
+## User Week
+- week_number: `1` (number)
+- fitness: (array[Content Fitness])
+- food: (array[Content Food])
+- motivational : (Base Content)
+- lifestyle : (Base Content)
+
+# Base Content
+- title: `Lorem ipsum` (string)
+- content: `Lorem ipsum dolor sit amet` (string)
+- image: `http://placehold.it/600x600` (string)
+
+# Content Fitness
+- Include Base Content
+- excercises: (array[Content Exercise, Content Exercise])
+
+# Content Food
+- Include Base Content
+- recipes: (array[Content Recipe, Content Recipe])
+
+# Content Exercise
+- title: `Lorem ipsum` (string)
+- content: `Lorem ipsum dolor sit amet` (string)
+- video_id: `mghe76x` (string)
+
+# Content Recipe
+- Include Base Content
+
+# Survey Question
+- Include Base Item Id
+- Include Base Item Content
+
+# Survey Answer
+- Include Base Item Id
+- Include Base Item Content
+
+# Survey Item
+- question : (Survey Question)
+- answers : (array[Survey Answer,Survey Answer,Survey Answer])
+
+# User Week Survey
+- week_number: `1` (number)
+- Include Survey Item
