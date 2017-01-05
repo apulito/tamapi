@@ -11,9 +11,6 @@ Elenco dei codici fardello caricati dall'utente
 + Response 200 (application/json)
     + Attributes
         - data (Codes)
-+ Response 422 (application/json)
-    + Attributes
-        - data (ValidationError)
 
 ## POST /loyalty/codes
 Caricamento di un codice fardello
@@ -25,6 +22,9 @@ Caricamento di un codice fardello
 + Response 200 (application/json)
     + Attributes
         - data (Codes)
++ Response 422 (application/json)
+    + Attributes
+        - data (ValidationError)
 
 
 #Group Premi
@@ -62,6 +62,9 @@ Richiesta premio
 + Response 200 (application/json)
     + Attributes
         - data (Awards Request)
++ Response 422 (application/json)
+  + Attributes
+      - data (ValidationError)
 
 #Group Soglie
 ## GET /loyalty/thresholds
@@ -72,6 +75,44 @@ Elenco delle soglie premio programma loyalty
 + Response 200 (application/json)
   + Attributes
     - data (array[Threshold, Threshold])
+
+#Group Utente
+## POST /users/register
+Registrazione nuovo utente
++ Request (application/json)
+    + Attributes (User Create)
++ Response 201 (application/json)
+    + Attributes
+        - data (User)
++ Response 422 (application/json)
+    + Attributes
+        - data (ValidationError)
+
+## GET /users/me
+Dettaglio utente loggato
++ Request (application/json)
+    + Headers
+        Authorization: Bearer <token>
++ Response 200 (application/json)
+    + Attributes
+        - data (User)
++ Response 422 (application/json)
+    + Attributes
+        - data (ValidationError)
+
+## GET /users/{id}
+Dettaglio utente
++ Request (application/json)
+    + Headers
+        Authorization: Bearer <token>
++ Parameters
+    + id: `2` - Id
++ Response 200 (application/json)
+    + Attributes
+        - data (User)
++ Response 422 (application/json)
+    + Attributes
+        - data (ValidationError)
 
 # Data Structures
 ## Codes (object)
@@ -104,3 +145,39 @@ Elenco delle soglie premio programma loyalty
 - id: `1` (number)
 - title: `nome soglia` (string)
 - content: `lorem ipsum dolor sit amet lorem ipsum dolor sit amet` (string)
+
+## UserBase
+- first_name: `Maria` (string, required)
+- last_name: `Rossi` (string, required)
+- birthday: (array[Date Array], required)
+- gender: `F` (string, required)
+- phone: `3274595785` (string)
+- address: `via Roma 120` (string, required)
+- zip_code: `10100` (string, required)
+- city: `Torino` (string, required)
+- state: `TO` (string, required)
+- email: `maria.rossi@test.com` (string, required)
+
+## User Create (object)
+- Include UserBase
+- email_confirm: `maria.rossi@test.com` (string, required)
+- password: `password` (string, required)
+- password_confirm: `password` (string, required)
+- terms: (array[User Terms], required)
+
+## User (object)
+- id: `1` (number)
+- Include UserBase
+- birthday_date: `1984-29-07` (string)
+- terms: (array[User Terms], required)
+
+## Date Array
+- year: `1984` (number)
+- month: `07` (number)
+- day: `29` (number)
+
+## User Terms
+- 1: '0' (number)
+- 2: `1` (number)
+- 3: `1` (number)
+- 4: `0` (number)
