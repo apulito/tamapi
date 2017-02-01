@@ -172,22 +172,17 @@ Elenco domande e risposte del questionario di profilazione utente
 + Request (application/json)
     + Headers
         Authorization: Bearer <token>
-+ Response 200 (application/json)
-    + Attributes
-        - data (Status App)
 + Response 422 (application/json)
     + Attributes
         - data (ValidationError)
 
-#Group Json Statici
+#Group Contenuti APP
 ## GET /status
 Dettaglio json relativo allo status
 + Request (application/json)
     + Headers
         Authorization: Bearer <token>
-+ Response 200 (application/json)
-    + Attributes
-        - data (json)
+
 + Response 404 (application/json)
     + Attributes
         - data (FileNotFoundError)
@@ -199,9 +194,7 @@ Dettaglio json relativo al parametro passato come input
         Authorization: Bearer <token>
 + Parameters
     + name: `menu` - Nome del json che si vuole restituito
-+ Response 200 (application/json)
-    + Attributes
-        - data (json)
+
 + Response 404 (application/json)
     + Attributes
         - data (FileNotFoundError)
