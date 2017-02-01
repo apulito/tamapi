@@ -174,10 +174,37 @@ Elenco domande e risposte del questionario di profilazione utente
         Authorization: Bearer <token>
 + Response 200 (application/json)
     + Attributes
-        - data (Profile Survey)
+        - data (Status App)
 + Response 422 (application/json)
     + Attributes
         - data (ValidationError)
+
+#Group Json Statici
+## GET /status
+Dettaglio json relativo allo status
++ Request (application/json)
+    + Headers
+        Authorization: Bearer <token>
++ Response 200 (application/json)
+    + Attributes
+        - data (json)
++ Response 404 (application/json)
+    + Attributes
+        - data (FileNotFoundError)
+
+## GET /app-contents/{name}
+Dettaglio json relativo al parametro passato come input
++ Request (application/json)
+    + Headers
+        Authorization: Bearer <token>
++ Parameters
+    + name: `menu` - Nome del json che si vuole restituito
++ Response 200 (application/json)
+    + Attributes
+        - data (json)
++ Response 404 (application/json)
+    + Attributes
+        - data (FileNotFoundError)
 
 # Data Structures
 ## Base Item Id
@@ -214,6 +241,11 @@ Elenco domande e risposte del questionario di profilazione utente
 - guid: `mhgd67` (string)
 
 ## ValidationError (object)
+- status: `error` (string)
+- error_code: `ERRCODE` (string)
+- message: `error message string` (string)
+
+## FileNotFoundError (object)
 - status: `error` (string)
 - error_code: `ERRCODE` (string)
 - message: `error message string` (string)
